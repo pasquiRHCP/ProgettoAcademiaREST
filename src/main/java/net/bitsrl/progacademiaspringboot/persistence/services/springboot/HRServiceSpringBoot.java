@@ -38,12 +38,8 @@ public class HRServiceSpringBoot implements HRServiceSB {
     @Transactional
     @Override
     public Agent createAgent(Agent toInsert) throws DataException {
-        try {
             agentRepo.create(toInsert);
             return toInsert;
-        } catch (PersistenceException pe) {
-            throw new DataException("errore della creazione dell' agent con JPA", pe);
-        }
     }
 
     @Transactional
@@ -90,23 +86,23 @@ public class HRServiceSpringBoot implements HRServiceSB {
     //CORSOOOOOOOO
     private EntityManager em;
 
+    @Autowired
+    public HRServiceSpringBoot(EntityManager entityManager) {
+        em = entityManager;
+    }
+
     @Transactional
     @Override
     public Course createCourse(Course toInsert) throws DataException {
-        try {
 
             Area a = em.getReference(Area.class, 1);
             toInsert.setArea(a);
             Project p = em.getReference(Project.class, 1);
             toInsert.setProject(p);
+
             Course inserted = courseRepo.create(toInsert);
 
-            em.getTransaction().commit();
             return inserted;
-        } catch (PersistenceException pe) {
-            em.getTransaction().rollback();
-            throw new DataException("errore nella creazione di un nuovo corso con JPA", pe);
-        }
     }
 
     @Transactional

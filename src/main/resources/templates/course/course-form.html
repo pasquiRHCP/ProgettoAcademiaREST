@@ -22,23 +22,21 @@
     <p class="h4 mb-4">Create New Course</p>
 
     <form action="#" th:action="@{/course/create}"
-          th:object="${Courses}" method="POST">
+          th:object="${course}" method="POST">
 
-        <input type="text" th:field="*{firstName}"
-               class="form-control mb-4 col-4" placeholder="First name">
+        <input type="text" th:field="*{title}"
+               class="form-control mb-4 col-4" placeholder="Title">
 
-        <input type="text" th:field="*{lastName}"
-               class="form-control mb-4 col-4" placeholder="Last name">
+        <input type="number" th:field="*{numHours}"
+               class="form-control mb-4 col-4" placeholder="Duration in hour">
 
-        <input type="text" th:field="*{email}"
-               class="form-control mb-4 col-4" placeholder="Email">
 
         <button type="submit" class="btn btn-info col-2">Save</button>
 
     </form>
 
     <hr>
-    <a th:href="@{/employees/list}">Back to Employees List</a>
+    <a th:href="@{/course}">Back to course list</a>
 
 </div>
 </body>
