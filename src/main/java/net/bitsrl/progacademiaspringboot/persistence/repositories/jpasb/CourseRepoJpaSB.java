@@ -4,15 +4,20 @@ import net.bitsrl.progacademiaspringboot.model.Agent;
 import net.bitsrl.progacademiaspringboot.model.Course;
 import net.bitsrl.progacademiaspringboot.persistence.repositories.DataException;
 import net.bitsrl.progacademiaspringboot.persistence.repositories.abstractions.RepositoryCourse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.Collection;
 
 @Repository
 public class CourseRepoJpaSB implements RepositoryCourse {
     private EntityManager em;
+
+    @Autowired
+    public CourseRepoJpaSB (EntityManager entityManager) {em = entityManager;}
 
     @Override
     public Course create(Course toInsert) throws DataException {
@@ -35,8 +40,10 @@ public class CourseRepoJpaSB implements RepositoryCourse {
 
     @Override
     public Collection<Course> getAll() {
-        return em.createQuery("select c from Course c", Course.class)
-                .getResultList();
+        Query q = em.createQuery("select a from Course a");
+        Collection <Course> courses = q.getResultList();
+        System.out.println("AAAAAAAAAAAAABBBBBBBBBBBBBBBBBBBBXXXXXXXXXXXXXXXXXXXXXX");
+        return courses;
     }
 
     @Override

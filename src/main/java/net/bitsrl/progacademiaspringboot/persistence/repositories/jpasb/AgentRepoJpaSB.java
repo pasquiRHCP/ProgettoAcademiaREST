@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.Collection;
+import java.util.List;
 
 
 @Repository
@@ -41,8 +43,9 @@ public class AgentRepoJpaSB implements RepositoryAgent {
 
     @Override
     public Collection<Agent> getAll() {
-        return em.createQuery("select a from Agent a", Agent.class)
-                .getResultList();
+        Query q = em.createQuery("select a from Agent a");
+        Collection <Agent> agents = q.getResultList();
+        return agents;
     }
 
     @Override

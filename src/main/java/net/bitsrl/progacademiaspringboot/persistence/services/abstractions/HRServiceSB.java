@@ -5,6 +5,7 @@ import net.bitsrl.progacademiaspringboot.model.Course;
 import net.bitsrl.progacademiaspringboot.persistence.repositories.DataException;
 
 import java.util.Collection;
+import java.util.List;
 
 public interface HRServiceSB {
     Agent createAgent(Agent toInsert) throws DataException;

@@ -5,23 +5,35 @@ import net.bitsrl.progacademiaspringboot.model.Area;
 import net.bitsrl.progacademiaspringboot.model.Course;
 import net.bitsrl.progacademiaspringboot.model.Project;
 import net.bitsrl.progacademiaspringboot.persistence.repositories.DataException;
+import net.bitsrl.progacademiaspringboot.persistence.repositories.abstractions.RepositoryAgent;
+import net.bitsrl.progacademiaspringboot.persistence.repositories.abstractions.RepositoryCourse;
 import net.bitsrl.progacademiaspringboot.persistence.repositories.jpasb.AgentRepoJpaSB;
 import net.bitsrl.progacademiaspringboot.persistence.repositories.jpasb.CourseRepoJpaSB;
 import net.bitsrl.progacademiaspringboot.persistence.services.abstractions.HRServiceSB;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
 import javax.transaction.Transactional;
 import java.util.Collection;
+import java.util.List;
 
 @Service
 public class HRServiceSpringBoot implements HRServiceSB {
+
     @Autowired
-    private AgentRepoJpaSB agentRepo;
+    private RepositoryAgent agentRepo;
     @Autowired
-    private CourseRepoJpaSB courseRepo;
+    private RepositoryCourse courseRepo;
+
+
+   /* @Autowired
+    public HRServiceSpringBoot(RepositoryAgent agentRepoJpaSb, RepositoryCourse courseRepoJpaSb) {
+        agentRepo = agentRepoJpaSb;
+        courseRepo = courseRepoJpaSb;
+    }*/
 
     @Transactional
     @Override
@@ -59,7 +71,7 @@ public class HRServiceSpringBoot implements HRServiceSB {
     @Transactional
     @Override
     public Collection<Agent> getAllAgents() throws DataException {
-            return agentRepo.getAll();
+        return agentRepo.getAll();
 
     }
 
@@ -77,9 +89,10 @@ public class HRServiceSpringBoot implements HRServiceSB {
     //-----------------------------------------------------------------------------------------------------------------
     //CORSOOOOOOOO
     private EntityManager em;
+
     @Transactional
     @Override
-    public Course createCourse(Course toInsert) throws DataException{
+    public Course createCourse(Course toInsert) throws DataException {
         try {
 
             Area a = em.getReference(Area.class, 1);
@@ -98,7 +111,7 @@ public class HRServiceSpringBoot implements HRServiceSB {
 
     @Transactional
     @Override
-    public boolean deleteCourse(int courseId) throws DataException{
+    public boolean deleteCourse(int courseId) throws DataException {
         em.getTransaction().begin();
         try {
             courseRepo.delete(courseId);
@@ -112,7 +125,7 @@ public class HRServiceSpringBoot implements HRServiceSB {
 
     @Transactional
     @Override
-    public boolean updateCourse(int courseId, Course toUpdate) throws DataException{
+    public boolean updateCourse(int courseId, Course toUpdate) throws DataException {
         em.getTransaction().begin();
         try {
             courseRepo.update(courseId, toUpdate);
@@ -120,20 +133,20 @@ public class HRServiceSpringBoot implements HRServiceSB {
             return true;
         } catch (PersistenceException pe) {
             em.getTransaction().rollback();
-            throw new DataException("errore nell'aggiornamento del corso con JPA",pe);
+            throw new DataException("errore nell'aggiornamento del corso con JPA", pe);
         }
     }
 
     @Transactional
     @Override
-    public Collection<Course> getAllCourses() throws DataException{
-            return courseRepo.getAll();
+    public Collection<Course> getAllCourses() throws DataException {
+        return courseRepo.getAll();
 
     }
 
     @Transactional
     @Override
-    public Collection<Course> getCoursesByTitleLike(String pattern) throws DataException{
+    public Collection<Course> getCoursesByTitleLike(String pattern) throws DataException {
         try {
             return courseRepo.getByTitleLike(pattern);
         } catch (PersistenceException pe) {
