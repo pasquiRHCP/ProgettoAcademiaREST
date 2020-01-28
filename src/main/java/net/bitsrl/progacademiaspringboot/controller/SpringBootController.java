@@ -1,6 +1,7 @@
 package net.bitsrl.progacademiaspringboot.controller;
 
 import net.bitsrl.progacademiaspringboot.model.Agent;
+import net.bitsrl.progacademiaspringboot.model.Course;
 import net.bitsrl.progacademiaspringboot.persistence.repositories.DataException;
 import net.bitsrl.progacademiaspringboot.persistence.services.abstractions.HRServiceSB;
 import net.bitsrl.progacademiaspringboot.persistence.services.abstractions.HRServiceSB;
@@ -31,6 +32,11 @@ public class SpringBootController {
         agents.forEach(System.out::println);
         return "agent/allAgents";
     }
+
+    @GetMapping("/course")
+    public String getAllCourse() throws DataException {
+        Collection<Course> courses = HRServiceSpringBoot.getAllCourses();
+        courses.forEach(System.out::println);
+        return "course/allCourses";
+    }
 }
-
-

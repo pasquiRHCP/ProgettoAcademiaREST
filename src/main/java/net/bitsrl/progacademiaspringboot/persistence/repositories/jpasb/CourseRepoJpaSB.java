@@ -1,5 +1,6 @@
 package net.bitsrl.progacademiaspringboot.persistence.repositories.jpasb;
 
+import net.bitsrl.progacademiaspringboot.model.Agent;
 import net.bitsrl.progacademiaspringboot.model.Course;
 import net.bitsrl.progacademiaspringboot.persistence.repositories.DataException;
 import net.bitsrl.progacademiaspringboot.persistence.repositories.abstractions.RepositoryCourse;
@@ -34,9 +35,10 @@ public class CourseRepoJpaSB implements RepositoryCourse {
 
     @Override
     public Collection<Course> getAll() {
-        return em.createQuery("select a from Course a", Course.class)
+        return em.createQuery("select c from Course c", Course.class)
                 .getResultList();
     }
+
     @Override
     public Collection<Course> getByTitleLike(String pattern) {
         TypedQuery q = em.createQuery("select a from Course a where a.title LIKE :pattern", Course.class);

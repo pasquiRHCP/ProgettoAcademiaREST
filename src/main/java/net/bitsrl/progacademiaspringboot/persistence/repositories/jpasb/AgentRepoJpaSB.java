@@ -44,6 +44,7 @@ public class AgentRepoJpaSB implements RepositoryAgent {
         return em.createQuery("select a from Agent a", Agent.class)
                 .getResultList();
     }
+
     @Override
     public Collection<Agent> getByLastnameLike(String pattern) {
         TypedQuery q = em.createQuery("select a from Agent a where a.lastname LIKE :pattern", Agent.class);

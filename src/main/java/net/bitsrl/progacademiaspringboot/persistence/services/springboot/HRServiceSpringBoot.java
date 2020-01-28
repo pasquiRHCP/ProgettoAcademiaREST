@@ -127,11 +127,8 @@ public class HRServiceSpringBoot implements HRServiceSB {
     @Transactional
     @Override
     public Collection<Course> getAllCourses() throws DataException{
-        try {
             return courseRepo.getAll();
-        } catch (PersistenceException pe) {
-            throw new DataException("errore nella lista di corsi tramite JPA", pe);
-        }
+
     }
 
     @Transactional
