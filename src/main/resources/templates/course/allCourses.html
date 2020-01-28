@@ -1,10 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Courses</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Course Directory</title>
 </head>
+
 <body>
-asdasdadasdadad
+
+<div class="container">
+
+    <h3>Course Directory</h3>
+    <hr>
+
+     Add a button
+    <a th:href="@{/employees/showFormForAdd}"
+       class="btn btn-primary btn-sm mb-3">
+        Add Employee
+    </a>
+
+
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>numHours</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="tempCourse : ${Courses}">
+
+            <td th:text="${tempCourse.id}" />
+            <td th:text="${tempCourse.title}" />
+            <td th:text="${tempCourse.numHours}" />
+
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
 </body>
 </html>
+
+
+

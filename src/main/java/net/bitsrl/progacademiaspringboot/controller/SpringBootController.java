@@ -7,6 +7,7 @@ import net.bitsrl.progacademiaspringboot.persistence.services.abstractions.HRSer
 import net.bitsrl.progacademiaspringboot.persistence.services.abstractions.HRServiceSB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,18 +26,23 @@ public class SpringBootController {
     }
 
 
-
     @GetMapping("/agent")
     public String getAllAgent() throws DataException {
         Collection<Agent> agents = HRServiceSpringBoot.getAllAgents();
         agents.forEach(System.out::println);
         return "agent/allAgents";
     }
+//WIP
+    //@GetMapping("/agent")
+    //public
 
     @GetMapping("/course")
-    public String getAllCourse() throws DataException {
+    public String getAllCourse(Model mdl) throws DataException {
         Collection<Course> courses = HRServiceSpringBoot.getAllCourses();
-        courses.forEach(System.out::println);
+        //courses.forEach(System.out::println);
+        mdl.addAttribute("Courses", courses);
+
+
         return "course/allCourses";
     }
 }
