@@ -20,13 +20,13 @@ import java.util.Collection;
 public class SpringBootController {
 
     private HRServiceSB HRServiceSpringBoot;
-
     @Autowired
     public SpringBootController(HRServiceSB hrServiceSB) {
         this.HRServiceSpringBoot = hrServiceSB;
     }
 
 
+//--------------------------------------------------AGENTS--------------------------------------------------------------
     @GetMapping("/agent")
     public String getAllAgent(Model mdl) throws DataException {
         Collection<Agent> agents = HRServiceSpringBoot.getAllAgents();
@@ -35,23 +35,19 @@ public class SpringBootController {
         return "agent/allAgents";
     }
 
-
-
-    @GetMapping("/course/formCreate")
-    public String formCreate(Model mdl) throws DataException {
-
-        Course c = new Course();
-        mdl.addAttribute("course",c);
-
-        return "/course/course-form";
+    @GetMapping("/agent/formCreate")
+    public String formCreateAgent(Model mdl) throws DataException {
+        Agent a = new Agent();
+        mdl.addAttribute("agent",a);
+        return "/agent/agent-form";
     }
-//WIP
-    @PostMapping("/course/create")
-    public String createCourse(@ModelAttribute("course") Course toInsert) throws DataException {
-    HRServiceSpringBoot.createCourse(toInsert);
 
-    return "redirect:/course";
+    @PostMapping("/agent/create")
+    public String createAgent(@ModelAttribute("agent") Agent toInsert) throws DataException {
+        HRServiceSpringBoot.createAgent(toInsert);
+        return "redirect:/agent";
     }
+    //---------------------------------------COURSES--------------------------------------------------------------------
 
     @GetMapping("/course")
     public String getAllCourse(Model mdl) throws DataException {
@@ -59,5 +55,18 @@ public class SpringBootController {
         //courses.forEach(System.out::println);
         mdl.addAttribute("Courses", courses);
         return "course/allCourses";
+    }
+
+    @GetMapping("/course/formCreate")
+    public String formCreateCourse(Model mdl) throws DataException {
+        Course c = new Course();
+        mdl.addAttribute("course",c);
+        return "/course/course-form";
+    }
+
+    @PostMapping("/course/create")
+    public String createCourse(@ModelAttribute("course") Course toInsert) throws DataException {
+        HRServiceSpringBoot.createCourse(toInsert);
+        return "redirect:/course";
     }
 }

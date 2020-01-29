@@ -38,6 +38,8 @@ public class HRServiceSpringBoot implements HRServiceSB {
     @Transactional
     @Override
     public Agent createAgent(Agent toInsert) throws DataException {
+        //TEMPORANEO EVITO FOREIGN KEY
+        toInsert.setEmployee(true);
             agentRepo.create(toInsert);
             return toInsert;
     }
@@ -82,24 +84,24 @@ public class HRServiceSpringBoot implements HRServiceSB {
     }
 
 
-    //-----------------------------------------------------------------------------------------------------------------
-    //CORSOOOOOOOO
+    //----------------------------------------COURSES----------------------------------------------------------------
+    //**********TEMPORANEO EVITO FOREIGN KEY*************
     private EntityManager em;
-
     @Autowired
     public HRServiceSpringBoot(EntityManager entityManager) {
         em = entityManager;
     }
+    //****************
 
     @Transactional
     @Override
     public Course createCourse(Course toInsert) throws DataException {
-
+//TEMPORANEO EVITO FOREIGN KEY*******************************
             Area a = em.getReference(Area.class, 1);
             toInsert.setArea(a);
             Project p = em.getReference(Project.class, 1);
             toInsert.setProject(p);
-
+//********************************************************
             Course inserted = courseRepo.create(toInsert);
 
             return inserted;
