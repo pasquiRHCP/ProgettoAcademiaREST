@@ -19,5 +19,4 @@ public class CourseAndCourseEditionService implements AbCourseAndCourseEditionSe
         courseRepo.save(toInsert);
     }
 
-
 }

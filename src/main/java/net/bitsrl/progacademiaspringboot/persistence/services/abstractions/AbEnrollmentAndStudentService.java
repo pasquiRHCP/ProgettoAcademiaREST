@@ -1,6 +1,10 @@
 package net.bitsrl.progacademiaspringboot.persistence.services.abstractions;
 
+import net.bitsrl.progacademiaspringboot.model.Student;
+
+import java.util.List;
+
 public interface AbEnrollmentAndStudentService {
     //inserire metodi particolari
-    public void metodoPart();
+    List<Student> studentsGetAll();
 }
