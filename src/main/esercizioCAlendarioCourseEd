@@ -1,0 +1,20 @@
+Calendario per una course edition gia inserita nel db
+
+assumendo vari studenti
+voglio un piccolo riassunto della situazuone stud (
++quanti stud
++nom e cogn )
+
+
+pulsante per
+++aggiungo stud
+
+
+vedere enrollment di uno studente
+se iscritto
+tutti gli esami di x studente
+
+riassunto di
+costi totali per chi ha gia pagato
+        tot soldi per chi ha pagato
+        tot soldi ancpra da pagare
