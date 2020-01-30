@@ -3,13 +3,14 @@ package net.bitsrl.progacademiaspringboot.persistence.services.abstractions;
 import net.bitsrl.progacademiaspringboot.model.Course;
 import net.bitsrl.progacademiaspringboot.model.CourseEdition;
 
-import java.util.Collection;
+import java.util.List;
+
 
 public interface AbCourseService {
 
-    Collection<Course> findAllCourse();
+    List<Course> findAllCourse();
 
-    Collection<Course> findCourseByTitle(String pattern);
+    List<Course> findCourseByTitle(String pattern);
 
     void saveCourse(Course toInsert);
 
@@ -17,7 +18,7 @@ public interface AbCourseService {
 
 //--------------------------------------COURSE EDITION----------------------------------------------
 
-    Collection<CourseEdition> findAllCourseEdition();
+    List<CourseEdition> findAllCourseEdition();
 
     //CourseEdition findCourseEditionById(int id);
 
