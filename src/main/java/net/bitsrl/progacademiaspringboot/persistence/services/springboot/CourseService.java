@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 
 @Service
 public class CourseService implements AbCourseService {
@@ -21,12 +22,12 @@ public class CourseService implements AbCourseService {
     //---------------------------------------------------------------------------------------------------------------------
     //COURSE
     @Override
-    public Collection<Course> findAllCourse() {
+    public List<Course> findAllCourse() {
         return courseRepo.findAll();
     }
 
     @Override
-    public Collection<Course> findCourseByTitle(String pattern) {
+    public List<Course> findCourseByTitle(String pattern) {
         return null;
     }
 
@@ -43,7 +44,7 @@ public class CourseService implements AbCourseService {
 //----------------------------------------------------------------------------------------------------------------------
     //COURSE EDITION
     @Override
-    public Collection<CourseEdition> findAllCourseEdition() {
+    public List<CourseEdition> findAllCourseEdition() {
         return courseEditionRepo.findAll();
     }
 
