@@ -6,9 +6,7 @@ import net.bitsrl.progacademiaspringboot.persistence.services.abstractions.AbCou
 import net.bitsrl.progacademiaspringboot.persistence.services.abstractions.AbEnrollmentAndStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.List;
@@ -23,18 +21,26 @@ public class StudentRestController {
         this.abEnrollmentAndStudentService = abEnrollmentAndStudentService;
     }
 
-
     @GetMapping("/getall")
-    public List<Student> getAllStudents(Model mdl) throws DataException {
+    public List<Student> getAllStudents() throws DataException {
         List<Student> students = abEnrollmentAndStudentService.studentsGetAll();
-        mdl.addAttribute("Students", students);
         return students;
     }
 
-//    @PostMapping("/student/create")
-//    public String createStudent(@ModelAttribute("student") Student toInsert) throws DataException {
-//        HRServiceSpringBoot.createStudent(toInsert);
-//        return "redirect:/student";
-//    }
+    @PostMapping("/create")
+    public Student createStudent(Student student) throws DataException {
+        abEnrollmentAndStudentService.studentCreateOrUpdate(student);
+        return student;
+    }
 
+    @PostMapping("/update")
+    public Student updateStudent(Integer idStudent, Student student){
+        abEnrollmentAndStudentService.studentCreateOrUpdate(student);
+        return student;
+    }
+
+    @GetMapping("/delete/{id}")
+    public void deleteStudent(@PathVariable Integer id){
+        abEnrollmentAndStudentService.studentDelete(id);
+    }
 }
