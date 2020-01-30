@@ -17,9 +17,29 @@ public class Student {
     private boolean isPrivate;
     private String email;
     private String phone;
-    private Collection<Enrollment> enrollments;
     private Client client;
+    private Collection<Enrollment> enrollments;
     private Collection<StudentFeedback> studentFeedbacks;
+
+    public Student(){
+
+    }
+
+    public Student(int id, String firstname, String lastname, LocalDate dateOfBirth, String sex,
+                   DegreeType degreeType, String degreeTitle, boolean isPrivate, String email, String phone,
+                   Client client) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.dateOfBirth = dateOfBirth;
+        this.sex = sex;
+        this.degreeType = degreeType;
+        this.degreeTitle = degreeTitle;
+        this.isPrivate = isPrivate;
+        this.email = email;
+        this.phone = phone;
+        this.client = client;
+    }
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

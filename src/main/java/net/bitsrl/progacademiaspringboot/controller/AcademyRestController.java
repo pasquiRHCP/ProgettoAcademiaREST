@@ -1,7 +1,7 @@
 package net.bitsrl.progacademiaspringboot.controller;
 
 import net.bitsrl.progacademiaspringboot.persistence.services.abstractions.AbCourseService;
-import net.bitsrl.progacademiaspringboot.persistence.services.abstractions.AbStudentService;
+import net.bitsrl.progacademiaspringboot.persistence.services.abstractions.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class AcademyRestController {
 
     private AbCourseService courseService;
-    private AbStudentService studentService;
+    private StudentService studentService;
 
     @Autowired
-    public AcademyRestController(AbCourseService courseService, AbStudentService studentService) {
+    public AcademyRestController(AbCourseService courseService, StudentService studentService) {
         this.courseService = courseService;
         this.studentService = studentService;
     }

@@ -3,19 +3,22 @@ package net.bitsrl.progacademiaspringboot.persistence.services.springboot;
 import net.bitsrl.progacademiaspringboot.model.Student;
 import net.bitsrl.progacademiaspringboot.persistence.repositories.abstractions.EnrollmentAbRepository;
 import net.bitsrl.progacademiaspringboot.persistence.repositories.abstractions.StudentAbRepository;
-import net.bitsrl.progacademiaspringboot.persistence.services.abstractions.AbStudentService;
+import net.bitsrl.progacademiaspringboot.persistence.services.abstractions.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
-public class StudentService implements AbStudentService {
+@Transactional
+public class StudentServiceImpl implements StudentService {
 
     @Autowired
     private StudentAbRepository studentRepo;
     @Autowired
     private EnrollmentAbRepository enrollmentRepo;
+
 
     @Override
     public Student studentCreateOrUpdate(Student student) {
@@ -27,7 +30,7 @@ public class StudentService implements AbStudentService {
         studentRepo.deleteById(id);
     }
 
-    public List<Student> studentsGetAll(){
+    public List<Student> getAllStudents(){
         return studentRepo.findAll();
     }
 }

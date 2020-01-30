@@ -1,43 +1,57 @@
 package net.bitsrl.progacademiaspringboot.controller;
 
+import net.bitsrl.progacademiaspringboot.dto.StudentDto;
 import net.bitsrl.progacademiaspringboot.model.Student;
 import net.bitsrl.progacademiaspringboot.persistence.repositories.DataException;
-import net.bitsrl.progacademiaspringboot.persistence.services.abstractions.AbStudentService;
+import net.bitsrl.progacademiaspringboot.persistence.services.abstractions.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/student")
 public class StudentRestController {
-    private AbStudentService abStudentService;
+    private StudentService studentService;
 
     @Autowired
-    public StudentRestController(AbStudentService abStudentService) {
-        this.abStudentService = abStudentService;
+    public StudentRestController(StudentService studentService) {
+        this.studentService = studentService;
     }
 
     @GetMapping("/getall")
-    public List<Student> getAllStudents() throws DataException {
-        List<Student> students = abStudentService.studentsGetAll();
-        return students;
+    public List<StudentDto> getAllStudents() throws DataException {
+        List<Student> students = studentService.getAllStudents();
+//        List<StudentDto> studentsDto = new ArrayList<StudentDto>();
+//        for (Student s: students) {
+//            studentsDto.add(new StudentDto(s));
+//        }
+//        List<StudentDto> studentDtos = students.stream()
+//                                       .map(s -> new StudentDto(s)).collect(Collectors.toList());
+//
+        List<StudentDto> studentDtos = students.stream()
+                .map(StudentDto::new).collect(Collectors.toList());
+
+        return studentDtos;
     }
 
     @PostMapping("/create")
-    public Student createStudent(@RequestBody Student student) throws DataException {
-        abStudentService.studentCreateOrUpdate(student);
-        return student;
+    public StudentDto createStudent(@RequestBody StudentDto dto) throws DataException {
+        Student student = dto.toStudent();
+        studentService.studentCreateOrUpdate(student);
+        return new StudentDto(student);
     }
 
     @PostMapping("/update")
     public Student updateStudent(Integer idStudent, Student student){
-        abStudentService.studentCreateOrUpdate(student);
+        studentService.studentCreateOrUpdate(student);
         return student;
     }
 
     @GetMapping("/delete/{id}")
     public void deleteStudent(@PathVariable Integer id){
-        abStudentService.studentDelete(id);
+        studentService.studentDelete(id);
     }
 }
