@@ -25,7 +25,7 @@ public class StudentRestController {
     }
 
     @PostMapping("/create")
-    public Student createStudent(Student student) throws DataException {
+    public Student createStudent(@RequestBody Student student) throws DataException {
         abStudentService.studentCreateOrUpdate(student);
         return student;
     }

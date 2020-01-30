@@ -18,5 +18,4 @@ public class CourseAndCourseEditionService implements AbCourseAndCourseEditionSe
     public void newCourse(Course toInsert) {
         courseRepo.save(toInsert);
     }
-
 }
