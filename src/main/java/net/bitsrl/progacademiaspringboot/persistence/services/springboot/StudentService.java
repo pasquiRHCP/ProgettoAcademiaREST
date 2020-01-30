@@ -3,14 +3,14 @@ package net.bitsrl.progacademiaspringboot.persistence.services.springboot;
 import net.bitsrl.progacademiaspringboot.model.Student;
 import net.bitsrl.progacademiaspringboot.persistence.repositories.abstractions.EnrollmentAbRepository;
 import net.bitsrl.progacademiaspringboot.persistence.repositories.abstractions.StudentAbRepository;
-import net.bitsrl.progacademiaspringboot.persistence.services.abstractions.AbEnrollmentAndStudentService;
+import net.bitsrl.progacademiaspringboot.persistence.services.abstractions.AbStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class StudentService implements AbEnrollmentAndStudentService {
+public class StudentService implements AbStudentService {
 
     @Autowired
     private StudentAbRepository studentRepo;
