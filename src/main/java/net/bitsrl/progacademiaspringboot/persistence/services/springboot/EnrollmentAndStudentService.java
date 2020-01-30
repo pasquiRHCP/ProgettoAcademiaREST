@@ -15,4 +15,8 @@ public class EnrollmentAndStudentService implements AbEnrollmentAndStudentServic
     private EnrollmentAbRepository enrollmentRepo;
 
 
+    @Override
+    public void metodoPart() {
+
+    }
 }
