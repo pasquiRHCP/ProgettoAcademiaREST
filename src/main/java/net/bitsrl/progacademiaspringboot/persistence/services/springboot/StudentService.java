@@ -10,12 +10,22 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class EnrollmentAndStudentService implements AbEnrollmentAndStudentService {
+public class StudentService implements AbEnrollmentAndStudentService {
 
     @Autowired
     private StudentAbRepository studentRepo;
     @Autowired
     private EnrollmentAbRepository enrollmentRepo;
+
+    @Override
+    public Student studentCreateOrUpdate(Student student) {
+        return studentRepo.save(student);
+    }
+
+    @Override
+    public void studentDelete(Integer id) {
+        studentRepo.deleteById(id);
+    }
 
     public List<Student> studentsGetAll(){
         return studentRepo.findAll();
