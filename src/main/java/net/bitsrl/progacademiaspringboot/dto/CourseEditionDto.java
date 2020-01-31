@@ -35,8 +35,7 @@ public class CourseEditionDto {
 
     public CourseEdition toCourseEdition(){
         return new CourseEdition(this.getId(), this.getStart(), this.getEnd(), this.getCost(), (byte) 1,
-        null, null, null, null, null, null, null,
-                null,null, null);
+        null, null, null, null, null, null, null);
     }
 
     public int getId() {

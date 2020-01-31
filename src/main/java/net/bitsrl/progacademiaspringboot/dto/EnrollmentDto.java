@@ -1,6 +1,5 @@
 package net.bitsrl.progacademiaspringboot.dto;
 
-import net.bitsrl.progacademiaspringboot.model.CourseEdition;
 import net.bitsrl.progacademiaspringboot.model.Enrollment;
 import net.bitsrl.progacademiaspringboot.model.Student;
 import org.springframework.stereotype.Component;

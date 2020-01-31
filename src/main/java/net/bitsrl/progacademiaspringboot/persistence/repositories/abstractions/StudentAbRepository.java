@@ -10,4 +10,5 @@ import java.util.Collection;
 
 public interface StudentAbRepository extends JpaRepository<Student, Integer> {
     //inserire metodi particolari
+
 }

@@ -8,7 +8,6 @@ import net.bitsrl.progacademiaspringboot.persistence.services.abstractions.AbCou
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -41,7 +40,7 @@ public class CourseService implements AbCourseService {
         courseRepo.deleteById(id);
     }
 
-//----------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------
     //COURSE EDITION
     @Override
     public List<CourseEdition> findAllCourseEdition() {
@@ -62,5 +61,4 @@ public class CourseService implements AbCourseService {
     public void deleteCourseEditionById(int id) {
         courseEditionRepo.deleteById(id);
     }
-
 }

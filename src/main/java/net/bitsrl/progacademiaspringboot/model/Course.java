@@ -18,28 +18,6 @@ public class Course {
     private Project project;
     private Collection<CourseEdition> courseEditions;
 
-    public Course() {
-    }
-
-    public Course (int id, String title, String description, String syllabus,
-                   int numHours, Level level, BigDecimal cost, Area area, Project project) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.syllabus = syllabus;
-        this.numHours = numHours;
-        this.level = level;
-        this.cost = cost;
-        this.area = area;
-        this.project = project;
-    }
-
-    public Course(int id, String title, int numHours) {
-        this.id = id;
-        this.title = title;
-        this.numHours = numHours;
-    }
-
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)

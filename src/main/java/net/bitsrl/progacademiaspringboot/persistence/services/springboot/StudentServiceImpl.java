@@ -36,6 +36,11 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public Student getStudentById(Integer id) {
+        return studentRepo.getOne(id);
+    }
+
+    @Override
     public Enrollment enrollmentCreateOrUpdate(Enrollment enrollment) {
         return enrollmentRepo.save(enrollment);
     }

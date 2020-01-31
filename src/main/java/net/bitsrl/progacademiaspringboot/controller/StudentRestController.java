@@ -4,12 +4,9 @@ import net.bitsrl.progacademiaspringboot.dto.EnrollmentDto;
 import net.bitsrl.progacademiaspringboot.dto.StudentDto;
 import net.bitsrl.progacademiaspringboot.model.Enrollment;
 import net.bitsrl.progacademiaspringboot.model.Student;
-import net.bitsrl.progacademiaspringboot.persistence.repositories.DataException;
 import net.bitsrl.progacademiaspringboot.persistence.services.abstractions.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,7 +15,6 @@ import java.util.stream.Collectors;
 public class StudentRestController {
     private StudentService studentService;
     private EnrollmentDto enrollmentDto;
-
 
     @Autowired
     public StudentRestController(StudentService studentService, EnrollmentDto enrollmentDto) {
@@ -33,13 +29,19 @@ public class StudentRestController {
 //        for (Student s: students) {
 //            studentsDto.add(new StudentDto(s));
 //        }
-//        List<StudentDto> studentDtos = students.stream()
+//        List<StudentDto> studentsDto = students.stream()
 //                                       .map(s -> new StudentDto(s)).collect(Collectors.toList());
 //
-        List<StudentDto> studentDtos = students.stream()
+        List<StudentDto> studentsDto = students.stream()
                 .map(StudentDto::new).collect(Collectors.toList());
 
-        return studentDtos;
+        return studentsDto;
+    }
+
+    @GetMapping("/students/{id}")
+    public Student getStudentById(@PathVariable Integer id){
+        Student student = studentService.getStudentById(id);
+        return student;
     }
 
     @PostMapping("/students")
@@ -49,7 +51,7 @@ public class StudentRestController {
         return new StudentDto(student);
     }
 
-    @PutMapping("students")
+    @PutMapping("/students")
     public StudentDto updateStudent(@RequestBody StudentDto studentDto){
         Student student = studentDto.toStudent();
         studentService.studentCreateOrUpdate(student);
@@ -85,5 +87,13 @@ public class StudentRestController {
     @DeleteMapping("/enrollments/{id}")
     public void deleteEnrollment(@PathVariable Integer id){
         studentService.enrollmentDelete(id);
+    }
+
+    @GetMapping("/students/{id}/enrollments")
+    public List<StudentDto> getAllStudents2(@PathVariable Integer id) {
+        List<Student> students = studentService.getAllStudents();
+        List<StudentDto> studentsDto = students.stream()
+                .map(StudentDto::new).collect(Collectors.toList());
+        return studentsDto;
     }
 }

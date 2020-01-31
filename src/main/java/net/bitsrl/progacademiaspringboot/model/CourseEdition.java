@@ -30,8 +30,7 @@ public class CourseEdition {
 
     public CourseEdition(int id, LocalDate start, LocalDate end, BigDecimal cost, byte isExternal,
                          String address, String city, String zip, Agent leadTeacher, Agent manager,
-                         Classroom mainClassroom, Course course, Collection<Enrollment> enrollments,
-                         Collection<Lesson> lessons, Collection<TeachingAssignment> teachingAssignments) {
+                         Classroom mainClassroom, Course course) {
         this.id = id;
         this.start = start;
         this.end = end;

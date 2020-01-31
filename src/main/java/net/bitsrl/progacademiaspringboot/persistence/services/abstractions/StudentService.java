@@ -10,6 +10,8 @@ public interface StudentService {
     Student studentCreateOrUpdate(Student student);
     void studentDelete(Integer id);
     List<Student> getAllStudents();
+    Student getStudentById(Integer id);
+
 
     Enrollment enrollmentCreateOrUpdate(Enrollment enrollment);
     void enrollmentDelete(Integer id);
