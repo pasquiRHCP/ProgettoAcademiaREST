@@ -87,7 +87,7 @@ public class Project {
     }
 
     @Basic
-    @Column(name = "budget", nullable = false, precision = 2)
+    @Column(name = "budget", nullable = false, precision = 12)
     public BigDecimal getBudget() {
         return budget;
     }

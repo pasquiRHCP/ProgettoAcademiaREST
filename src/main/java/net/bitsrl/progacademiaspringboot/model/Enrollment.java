@@ -147,7 +147,7 @@ public class Enrollment {
     }
 
     @ManyToOne
-    @JoinColumn(name = "course_editon_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "course_edition_id", referencedColumnName = "id", nullable = false)
     public CourseEdition getCourseEdition() {
         return courseEdition;
     }

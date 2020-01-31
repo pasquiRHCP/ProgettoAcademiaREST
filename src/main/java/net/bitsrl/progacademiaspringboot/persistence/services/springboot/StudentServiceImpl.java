@@ -54,4 +54,9 @@ public class StudentServiceImpl implements StudentService {
     public List<Enrollment> getAllEnrollment() {
         return enrollmentRepo.findAll();
     }
+
+    @Override
+    public List<Enrollment> findByStudentId(int id) {
+        return enrollmentRepo.findByStudentId(id);
+    }
 }

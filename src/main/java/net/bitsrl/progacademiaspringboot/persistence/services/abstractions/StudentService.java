@@ -16,4 +16,5 @@ public interface StudentService {
     Enrollment enrollmentCreateOrUpdate(Enrollment enrollment);
     void enrollmentDelete(Integer id);
     List<Enrollment> getAllEnrollment();
+    List<Enrollment> findByStudentId(int id);
 }

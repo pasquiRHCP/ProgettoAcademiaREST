@@ -39,9 +39,10 @@ public class StudentRestController {
     }
 
     @GetMapping("/students/{id}")
-    public Student getStudentById(@PathVariable Integer id){
+    public StudentDto getStudentById(@PathVariable Integer id){
         Student student = studentService.getStudentById(id);
-        return student;
+        StudentDto studentDto = new StudentDto(student);
+        return studentDto;
     }
 
     @PostMapping("/students")
@@ -79,9 +80,10 @@ public class StudentRestController {
     }
 
     @PutMapping("/enrollments")
-    public Enrollment updateEnrollment(Enrollment enrollment){
+    public EnrollmentDto updateEnrollment(@RequestBody EnrollmentDto enrollmentDto){
+        Enrollment enrollment = enrollmentDto.toEnrollment();
         studentService.enrollmentCreateOrUpdate(enrollment);
-        return enrollment;
+        return enrollmentDto;
     }
 
     @DeleteMapping("/enrollments/{id}")
@@ -90,10 +92,12 @@ public class StudentRestController {
     }
 
     @GetMapping("/students/{id}/enrollments")
-    public List<StudentDto> getAllStudents2(@PathVariable Integer id) {
-        List<Student> students = studentService.getAllStudents();
-        List<StudentDto> studentsDto = students.stream()
-                .map(StudentDto::new).collect(Collectors.toList());
-        return studentsDto;
+    public List<EnrollmentDto> getStudentAndEnrollment(@PathVariable int id) {
+        System.out.println("LEGGI QUI");
+        List<Enrollment> enrollments = studentService.findByStudentId(id);
+        List<EnrollmentDto> enrollmentsDto = enrollments.stream().
+                map(EnrollmentDto::new).collect(Collectors.toList());
+        return enrollmentsDto;
     }
+
 }
