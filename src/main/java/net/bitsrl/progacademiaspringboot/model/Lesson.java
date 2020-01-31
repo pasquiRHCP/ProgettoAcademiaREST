@@ -2,13 +2,14 @@ package net.bitsrl.progacademiaspringboot.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
 public class Lesson {
     private int id;
-    private LocalDate start;
-    private LocalDate end;
+    private LocalDateTime start;
+    private LocalDateTime end;
     private String subject;
     private Agent instructor;
     private CourseEdition courseEdition;
