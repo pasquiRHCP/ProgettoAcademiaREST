@@ -3,7 +3,6 @@ package net.bitsrl.progacademiaspringboot.dto;
 import net.bitsrl.progacademiaspringboot.model.CourseEdition;
 import net.bitsrl.progacademiaspringboot.model.Enrollment;
 import net.bitsrl.progacademiaspringboot.model.Student;
-import org.apache.tomcat.jni.Local;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -31,19 +30,19 @@ public class EnrollmentDto {
     public EnrollmentDto(){
     }
 
-    public EnrollmentDto(int id, Integer studentId, Integer courseEditionId, boolean courseFeePaid, LocalDate enrollmentDate,
-                         boolean withdrawed, LocalDate withdrawalDate, boolean passed, String assessment, int finalScore) {
-        this.id = id;
-        this.studentId = studentId;
-        this.courseEditionId = courseEditionId;
-        this.courseFeePaid = courseFeePaid;
-        this.enrollmentDate = enrollmentDate;
-        this.withdrawed = withdrawed;
-        this.passed = passed;
-        this.assessment = assessment;
-        this.finalScore = finalScore;
-        this.withdrawalDate = withdrawalDate;
-    }
+//    public EnrollmentDto(int id, Integer studentId, Integer courseEditionId, boolean courseFeePaid, LocalDate enrollmentDate,
+//                         boolean withdrawed, LocalDate withdrawalDate, boolean passed, String assessment, int finalScore) {
+//        this.id = id;
+//        this.studentId = studentId;
+//        this.courseEditionId = courseEditionId;
+//        this.courseFeePaid = courseFeePaid;
+//        this.enrollmentDate = enrollmentDate;
+//        this.withdrawed = withdrawed;
+//        this.passed = passed;
+//        this.assessment = assessment;
+//        this.finalScore = finalScore;
+//        this.withdrawalDate = withdrawalDate;
+//    }
 
     public EnrollmentDto(Enrollment e){
 
@@ -113,5 +112,93 @@ public class EnrollmentDto {
 
     public void setCourseEditionId(Integer courseEditionId) {
         this.courseEditionId = courseEditionId;
+    }
+
+    public LocalDate getEnrollmentDate() {
+        return enrollmentDate;
+    }
+
+    public void setEnrollmentDate(LocalDate enrollmentDate) {
+        this.enrollmentDate = enrollmentDate;
+    }
+
+    public boolean isWithdrawed() {
+        return withdrawed;
+    }
+
+    public void setWithdrawed(boolean withdrawed) {
+        this.withdrawed = withdrawed;
+    }
+
+    public LocalDate getWithdrawalDate() {
+        return withdrawalDate;
+    }
+
+    public void setWithdrawalDate(LocalDate withdrawalDate) {
+        this.withdrawalDate = withdrawalDate;
+    }
+
+    public boolean isPassed() {
+        return passed;
+    }
+
+    public void setPassed(boolean passed) {
+        this.passed = passed;
+    }
+
+    public int getFinalScore() {
+        return finalScore;
+    }
+
+    public void setFinalScore(int finalScore) {
+        this.finalScore = finalScore;
+    }
+
+    public String getAssessment() {
+        return assessment;
+    }
+
+    public void setAssessment(String assessment) {
+        this.assessment = assessment;
+    }
+
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
+    }
+
+    public void setCourseEditionId(int courseEditionId) {
+        this.courseEditionId = courseEditionId;
+    }
+
+    public String getFirstnameStud() {
+        return firstnameStud;
+    }
+
+    public void setFirstnameStud(String firstnameStud) {
+        this.firstnameStud = firstnameStud;
+    }
+
+    public String getLastnameStud() {
+        return lastnameStud;
+    }
+
+    public void setLastnameStud(String lastnameStud) {
+        this.lastnameStud = lastnameStud;
+    }
+
+    public BigDecimal getCostCourseEdition() {
+        return costCourseEdition;
+    }
+
+    public void setCostCourseEdition(BigDecimal costCourseEdition) {
+        this.costCourseEdition = costCourseEdition;
+    }
+
+    public String getTitleCourse() {
+        return titleCourse;
+    }
+
+    public void setTitleCourse(String titleCourse) {
+        this.titleCourse = titleCourse;
     }
 }

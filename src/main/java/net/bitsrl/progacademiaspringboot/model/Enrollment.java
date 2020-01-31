@@ -155,4 +155,20 @@ public class Enrollment {
     public void setCourseEdition(CourseEdition courseEdition) {
         this.courseEdition = courseEdition;
     }
+
+    @Override
+    public String toString() {
+        return "Enrollment{" +
+                "id=" + id +
+                ", enrollmentDate=" + enrollmentDate +
+                ", withdrawed=" + withdrawed +
+                ", withdrawalDate=" + withdrawalDate +
+                ", passed=" + passed +
+                ", finalScore=" + finalScore +
+                ", assessment='" + assessment + '\'' +
+                ", courseFeePaid=" + courseFeePaid +
+                ", student=" + student +
+                ", courseEdition=" + courseEdition +
+                '}';
+    }
 }

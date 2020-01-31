@@ -93,11 +93,13 @@ public class StudentRestController {
 
     @GetMapping("/students/{id}/enrollments")
     public List<EnrollmentDto> getStudentAndEnrollment(@PathVariable int id) {
-        System.out.println("LEGGI QUI");
         List<Enrollment> enrollments = studentService.findByStudentId(id);
+        for (Enrollment e: enrollments
+             ) {
+            System.out.println(e);
+        }
         List<EnrollmentDto> enrollmentsDto = enrollments.stream().
                 map(EnrollmentDto::new).collect(Collectors.toList());
         return enrollmentsDto;
     }
-
 }
