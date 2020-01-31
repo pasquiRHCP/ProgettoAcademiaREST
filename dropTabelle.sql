@@ -1,0 +1,15 @@
+DROP TABLE `hibernate_sequence`;
+DROP TABLE `enrollment` ;
+DROP TABLE `student_feedback`;
+DROP TABLE `teaching_assignment`;
+DROP TABLE `student`;
+DROP TABLE `competence`;
+DROP TABLE `client`;
+DROP TABLE `lesson`;
+DROP TABLE `course_edition`;
+DROP TABLE `course` ;
+DROP TABLE `classroom`;
+DROP TABLE `project`;
+DROP TABLE `agent`;
+DROP TABLE `skill`;
+DROP TABLE `area`;
