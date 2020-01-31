@@ -1,5 +1,6 @@
 package net.bitsrl.progacademiaspringboot.persistence.services.springboot;
 
+import net.bitsrl.progacademiaspringboot.model.Enrollment;
 import net.bitsrl.progacademiaspringboot.model.Student;
 import net.bitsrl.progacademiaspringboot.persistence.repositories.abstractions.EnrollmentAbRepository;
 import net.bitsrl.progacademiaspringboot.persistence.repositories.abstractions.StudentAbRepository;
@@ -32,5 +33,20 @@ public class StudentServiceImpl implements StudentService {
 
     public List<Student> getAllStudents(){
         return studentRepo.findAll();
+    }
+
+    @Override
+    public Enrollment enrollmentCreateOrUpdate(Enrollment enrollment) {
+        return enrollmentRepo.save(enrollment);
+    }
+
+    @Override
+    public void enrollmentDelete(Integer id) {
+        enrollmentRepo.deleteById(id);
+    }
+
+    @Override
+    public List<Enrollment> getAllEnrollment() {
+        return enrollmentRepo.findAll();
     }
 }

@@ -17,6 +17,24 @@ public class Enrollment {
     private Student student;
     private CourseEdition courseEdition;
 
+    public Enrollment() {
+    }
+
+    public Enrollment(int id, LocalDate enrollmentDate, boolean withdrawed, LocalDate withdrawalDate,
+                      boolean passed, int finalScore, String assessment, boolean courseFeePaid, Student student,
+                      CourseEdition courseEdition) {
+        this.id = id;
+        this.enrollmentDate = enrollmentDate;
+        this.withdrawed = withdrawed;
+        this.withdrawalDate = withdrawalDate;
+        this.passed = passed;
+        this.finalScore = finalScore;
+        this.assessment = assessment;
+        this.courseFeePaid = courseFeePaid;
+        this.student = student;
+        this.courseEdition = courseEdition;
+    }
+
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)

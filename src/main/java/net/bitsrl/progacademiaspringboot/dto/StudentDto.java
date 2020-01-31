@@ -5,7 +5,6 @@ import net.bitsrl.progacademiaspringboot.model.*;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.util.Collection;
 
 @Component
 public class StudentDto {
@@ -58,8 +57,14 @@ public class StudentDto {
     }
 
     public Student toStudent(){
+        Client client = null;
+        if(this.clientId != 0){
+            client = new Client();
+            client.setId(this.getClientId());
+            client.setName(this.getClientName());
+        }
         return new Student(this.getId(), this.getFirstname(), this.getLastname(), this.getDateOfBirth(), this.getSex(),
-                this.getDegreeType(), this.getDegreeTitle(), this.isPrivate(), this.getEmail(), this.getPhone(), null);
+                this.getDegreeType(), this.getDegreeTitle(), this.isPrivate(), this.getEmail(), this.getPhone(), client);
     }
 
     public int getId() {

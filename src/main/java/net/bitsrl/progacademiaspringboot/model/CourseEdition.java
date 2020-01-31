@@ -25,6 +25,30 @@ public class CourseEdition {
     private Collection<Lesson> lessons;
     private Collection<TeachingAssignment> teachingAssignments;
 
+    public CourseEdition() {
+    }
+
+    public CourseEdition(int id, LocalDate start, LocalDate end, BigDecimal cost, byte isExternal,
+                         String address, String city, String zip, Agent leadTeacher, Agent manager,
+                         Classroom mainClassroom, Course course, Collection<Enrollment> enrollments,
+                         Collection<Lesson> lessons, Collection<TeachingAssignment> teachingAssignments) {
+        this.id = id;
+        this.start = start;
+        this.end = end;
+        this.cost = cost;
+        this.isExternal = isExternal;
+        this.address = address;
+        this.city = city;
+        this.zip = zip;
+        this.leadTeacher = leadTeacher;
+        this.manager = manager;
+        this.mainClassroom = mainClassroom;
+        this.course = course;
+        this.enrollments = enrollments;
+        this.lessons = lessons;
+        this.teachingAssignments = teachingAssignments;
+    }
+
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)

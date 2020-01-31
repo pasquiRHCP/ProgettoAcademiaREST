@@ -1,5 +1,6 @@
 package net.bitsrl.progacademiaspringboot.persistence.services.abstractions;
 
+import net.bitsrl.progacademiaspringboot.model.Enrollment;
 import net.bitsrl.progacademiaspringboot.model.Student;
 
 import java.util.List;
@@ -10,4 +11,7 @@ public interface StudentService {
     void studentDelete(Integer id);
     List<Student> getAllStudents();
 
+    Enrollment enrollmentCreateOrUpdate(Enrollment enrollment);
+    void enrollmentDelete(Integer id);
+    List<Enrollment> getAllEnrollment();
 }
