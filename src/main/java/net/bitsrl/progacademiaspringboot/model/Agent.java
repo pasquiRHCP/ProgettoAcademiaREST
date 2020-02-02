@@ -130,7 +130,7 @@ public class Agent {
     }
 
     @Basic
-    @Column(name = "hourlyRate", nullable = true, precision = 2)
+    @Column(name = "hourlyRate", nullable = true, precision = 3)
     public BigDecimal getHourlyRate() {
         return hourlyRate;
     }
@@ -150,7 +150,7 @@ public class Agent {
     }
 
     @Basic
-    @Column(name = "email", nullable = true, length = 18)
+    @Column(name = "email", nullable = true, length = 45)
     public String getEmail() {
         return email;
     }
@@ -160,7 +160,7 @@ public class Agent {
     }
 
     @Basic
-    @Column(name = "website", nullable = true, length = 18)
+    @Column(name = "website", nullable = true, length = 45)
     public String getWebsite() {
         return website;
     }
