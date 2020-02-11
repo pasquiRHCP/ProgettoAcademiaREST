@@ -12,7 +12,6 @@ import java.util.List;
 
 @Service
 public class CourseService implements AbCourseService {
-
     @Autowired
     private CourseAbRepository courseRepo;
     @Autowired
