@@ -30,8 +30,11 @@ INSERT INTO `classroom` VALUES (0,50,0,'Classe Uno'),
 (0,20,1,'Classe Dieci');
 INSERT INTO `project` VALUES (0,1.00,'progInform','2020-02-14',0,'Java','2020-01-04',1);
 INSERT INTO `course` VALUES (0,10,'CorsoJava',1,120,'syllaA','CorsoJavaTitle',1,1);
+INSERT INTO `client` VALUES ('1', 'Via Santa Sofia 5', 'Torino', 'clientUno@email.com', 'CDFSCL98074', 'UniMi', 'IT1498406480', '34789512584', '94010', '1');
+
 INSERT INTO `course_edition` VALUES (0,'Address','Milan',50,'2020-02-14',0,'2020-01-01','94010',1,1,1,1),(0,'Address','Turin',90,'2019-01-01',0,'2018-05-14','9411',1,1,1,1);
-INSERT INTO `student` VALUES (0,'1992-10-14','Diploma',0,'cicci@live','Francesco','La Spina','3921955013',0,'M',NULL),
+INSERT INTO `student` VALUES 
+(0,'1980-01-31','Diploma',0,'primamail@hotmail.it','Ester','Nuante','3989632365',0,'F',NULL),
 (0,'1992-10-14','Diploma',0,'ciccioiccio@live.it','Francesco','La Spina','3921955013',0,'M',NULL),
 (0,'1994-12-05','Laurea',1,'emailUno@live.it','Antonio','Sereste','3485228321',1,'M',NULL),
 (0,'1995-04-19','Magistrale',2,'emailDue@live.it','Laura','Brambilla','3469821447',1,'F',NULL),
