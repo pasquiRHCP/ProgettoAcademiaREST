@@ -56,8 +56,8 @@ public class StudentRestController {
     @PutMapping("/students")
     public StudentDto updateStudent(@RequestBody StudentDto studentDto){
         Student student = studentDto.toStudent();
-        studentService.studentCreateOrUpdate(student);
-        return studentDto;
+        Student edited = studentService.studentCreateOrUpdate(student);
+        return new StudentDto(edited);
     }
 
     @DeleteMapping("/students/{id}")

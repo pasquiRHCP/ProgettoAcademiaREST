@@ -1,6 +1,7 @@
 package net.bitsrl.progacademiaspringboot.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import net.bitsrl.progacademiaspringboot.model.*;
 import org.springframework.stereotype.Component;
 
@@ -123,6 +124,7 @@ public class StudentDto {
         this.degreeTitle = degreeTitle;
     }
 
+    @JsonProperty(value="isPrivate")
     public boolean isPrivate() {
         return isPrivate;
     }
