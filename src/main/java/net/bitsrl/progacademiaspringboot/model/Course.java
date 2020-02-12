@@ -18,6 +18,23 @@ public class Course {
     private Project project;
     private Collection<CourseEdition> courseEditions;
 
+    public Course() {
+    }
+
+    public Course(int id, String title, String description, String syllabus, int numHours,
+                  Level level, BigDecimal cost, Area area, Project project) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.syllabus = syllabus;
+        this.numHours = numHours;
+        this.level = level;
+        this.cost = cost;
+        this.area = area;
+        this.project = project;
+    }
+
+
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -109,7 +126,7 @@ public class Course {
         return Objects.hash(id, title, description, syllabus, numHours, level, cost);
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "area_id", referencedColumnName = "id", nullable = false)
     public Area getArea() {
         return area;
@@ -150,7 +167,7 @@ public class Course {
                 ", cost=" + cost +
                 ", area=" + area +
                 ", project=" + project +
-           //     ", courseEditions=" + courseEditions +
+                //     ", courseEditions=" + courseEditions +
                 '}';
     }
 }

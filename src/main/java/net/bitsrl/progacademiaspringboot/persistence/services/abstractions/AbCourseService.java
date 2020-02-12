@@ -12,7 +12,7 @@ public interface AbCourseService {
 
     List<Course> findCourseByTitle(String pattern);
 
-    void saveCourse(Course toInsert);
+    Course saveCourse(Course toInsert);
 
     void deleteCourseById(int id);
 
@@ -20,9 +20,9 @@ public interface AbCourseService {
 
     List<CourseEdition> findAllCourseEdition();
 
-    //CourseEdition findCourseEditionById(int id);
+    CourseEdition findCourseEditionById(Integer id);
 
-    void saveCourseEdition(CourseEdition toInsert);
+    CourseEdition saveCourseEdition(CourseEdition toInsert);
 
     void deleteCourseEditionById(int id);
 

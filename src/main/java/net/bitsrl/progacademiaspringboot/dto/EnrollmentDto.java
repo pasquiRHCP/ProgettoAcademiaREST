@@ -30,56 +30,63 @@ public class EnrollmentDto {
     public EnrollmentDto(){
     }
 
-//    public EnrollmentDto(int id, Integer studentId, Integer courseEditionId, boolean courseFeePaid, LocalDate enrollmentDate,
-//                         boolean withdrawed, LocalDate withdrawalDate, boolean passed, String assessment, int finalScore) {
-//        this.id = id;
-//        this.studentId = studentId;
-//        this.courseEditionId = courseEditionId;
-//        this.courseFeePaid = courseFeePaid;
-//        this.enrollmentDate = enrollmentDate;
-//        this.withdrawed = withdrawed;
-//        this.passed = passed;
-//        this.assessment = assessment;
-//        this.finalScore = finalScore;
-//        this.withdrawalDate = withdrawalDate;
-//    }
+    public EnrollmentDto(int id, Integer studentId, Integer courseEditionId, boolean courseFeePaid, LocalDate enrollmentDate,
+                         boolean withdrawed, LocalDate withdrawalDate, boolean passed, String assessment, int finalScore) {
+        this.id = id;
+        this.studentId = studentId;
+        this.courseEditionId = courseEditionId;
+        this.courseFeePaid = courseFeePaid;
+        this.enrollmentDate = enrollmentDate;
+        this.withdrawed = withdrawed;
+        this.passed = passed;
+        this.assessment = assessment;
+        this.finalScore = finalScore;
+        this.withdrawalDate = withdrawalDate;
+    }
 
     public EnrollmentDto(Enrollment e){
 
         this.id = e.getId();
-        this.studentId = e.getStudent().getId();
-        this.lastnameStud = e.getStudent().getLastname();
-        this.firstnameStud = e.getStudent().getFirstname();
-        this.courseEditionId = e.getCourseEdition().getId();
+        this.studentId = e.getStudent() == null ? 0 : e.getStudent().getId();
+        this.lastnameStud = e.getStudent() == null ? null : e.getStudent().getLastname();
+        this.firstnameStud = e.getStudent() == null ? null : e.getStudent().getFirstname();
+        this.courseEditionId = e.getCourseEdition() == null ? 0 : e.getCourseEdition().getId();
         this.courseFeePaid = e.isCourseFeePaid();
-        this.costCourseEdition = e.getCourseEdition().getCost();
-        this.titleCourse = e.getCourseEdition().getCourse().getTitle();
+        this.costCourseEdition = e.getCourseEdition() == null ? BigDecimal.valueOf(0) : e.getCourseEdition().getCost();
+        this.titleCourse = e.getCourseEdition() == null ? null : e.getCourseEdition().getCourse() == null ? null : e.getCourseEdition().getCourse().getTitle();
         this.enrollmentDate = e.getEnrollmentDate();
+        this.withdrawed = e.isWithdrawed();
+        this.withdrawalDate = e.getWithdrawalDate();
+        this.passed = e.isPassed();
+        this.finalScore = e.getFinalScore();
+        this.assessment = e.getAssessment();
 
-        if (e.isWithdrawed()) {
-            this.withdrawed = e.isWithdrawed();
-            this.withdrawalDate = e.getWithdrawalDate();
-        }
-        if (e.isPassed()) {
-            this.passed = e.isPassed();
-            this.finalScore = e.getFinalScore();
-            this.assessment = e.getAssessment();
-        }
+//        if (e.isWithdrawed()) {
+//            this.withdrawed = e.isWithdrawed();
+//            this.withdrawalDate = e.getWithdrawalDate();
+//        }
+//        if (e.isPassed()) {
+//            this.passed = e.isPassed();
+//            this.finalScore = e.getFinalScore();
+//            this.assessment = e.getAssessment();
+//        }
     }
 
-   public Enrollment toEnrollment() {
-       Student student = null;
+    public Enrollment toEnrollment() {
+        Student student = null;
         if (this.studentId != 0) {
+            student = new Student();
             student.setId(this.studentId);
         }
-       CourseEdition courseEdition = null;
+        CourseEdition courseEdition = null;
         if (this.courseEditionId != 0) {
+            courseEdition = new CourseEdition();
             courseEdition.setId(this.courseEditionId);
         }
 
-         return new Enrollment(this.getId(), this.enrollmentDate, false, null,
-       false, 0, null, this.isCourseFeePaid(), student, courseEdition);
-   }
+        return new Enrollment(this.getId(), this.enrollmentDate, false, null,
+                false, 0, null, this.isCourseFeePaid(), student, courseEdition);
+    }
 
 
     public int getId() {

@@ -1,16 +1,20 @@
 package net.bitsrl.progacademiaspringboot.controller;
 
+import net.bitsrl.progacademiaspringboot.dto.CourseDto;
+import net.bitsrl.progacademiaspringboot.dto.CourseEditionDto;
 import net.bitsrl.progacademiaspringboot.model.Course;
+import net.bitsrl.progacademiaspringboot.model.CourseEdition;
 import net.bitsrl.progacademiaspringboot.persistence.repositories.DataException;
 import net.bitsrl.progacademiaspringboot.persistence.services.abstractions.AbCourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/cambiaquesta")
+@RequestMapping("/api")
 public class CourseRestController {
     private AbCourseService service;
 
@@ -19,24 +23,79 @@ public class CourseRestController {
         service = abCourseService;
     }
 
-    @GetMapping("/getall")
-    public List<Course> getAllCourse() throws DataException {
+    @GetMapping("/courses")
+    public List<CourseDto> getAllCourse() throws DataException {
+
         List<Course> courses = service.findAllCourse();
-        return courses;
+
+        List<CourseDto> coursesDto = courses.stream()
+                .map(CourseDto::new).collect(Collectors.toList());
+        return coursesDto;
     }
 
-    @PostMapping("/create")
-    public void createCourse(@RequestBody Course toInsert) throws DataException {
-        service.saveCourse(toInsert);
+    @GetMapping("/courses/{title}")
+    public List<CourseDto> getCourseByTitle(@PathVariable String title){
+        List<Course> courses = service.findCourseByTitle( title );
+
+        List<CourseDto> coursesByTitleDto = courses.stream()
+                .map(CourseDto::new).collect(Collectors.toList());
+        return coursesByTitleDto;
     }
 
-    @PostMapping("/update")
-    public void updateCourse(Course toInsert) {
-        service.saveCourse(toInsert);
+    @PostMapping("/courses")
+    public CourseDto createCourse(@RequestBody CourseDto dto) {
+        Course course = dto.toCourse();
+        service.saveCourse(course);
+        return new CourseDto(course);
     }
 
-    @GetMapping("/delete/{id}")
-    public void deleteCourse(@PathVariable Integer id) {
+    @PutMapping("/courses")
+    public CourseDto updateCourse(@RequestBody CourseDto dto){
+        Course course = dto.toCourse();
+        service.saveCourse(course);
+        return dto;
+    }
+
+    @DeleteMapping("/courses/{id}")
+    public void deleteCourse(@PathVariable Integer id){
         service.deleteCourseById(id);
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+    //COURSE EDITION
+
+    @GetMapping("/courseeditions")
+    public List<CourseEditionDto> getAllCourseEdition() throws DataException {
+
+        List<CourseEdition> courseEditions = service.findAllCourseEdition();
+        List<CourseEditionDto> courseEditionsDto = courseEditions.stream()
+                .map(CourseEditionDto::new).collect(Collectors.toList());
+        return courseEditionsDto;
+    }
+
+    @GetMapping("/courseeditions/{id}")
+    public CourseEditionDto getCourseEditionById(@PathVariable int id){
+        CourseEdition courseEdition = service.findCourseEditionById(id);
+        CourseEditionDto courseEditionDto = new CourseEditionDto(courseEdition);
+        return courseEditionDto;
+    }
+
+    @PostMapping("/courseeditions")
+    public CourseEditionDto createCourseEdition(@RequestBody CourseEditionDto dto) {
+        CourseEdition courseEdition = dto.toCourseEdition();
+        service.saveCourseEdition(courseEdition);
+        return new CourseEditionDto(courseEdition);
+    }
+
+    @PutMapping("/courseeditions")
+    public CourseEditionDto updateCourseEdition(@RequestBody CourseEditionDto dto){
+        CourseEdition courseEdition = dto.toCourseEdition();
+        service.saveCourseEdition(courseEdition);
+        return dto;
+    }
+
+    @DeleteMapping("/courseeditions/{id}")
+    public void deleteCourseEdition(@PathVariable Integer id){
+        service.deleteCourseEditionById(id);
     }
 }
