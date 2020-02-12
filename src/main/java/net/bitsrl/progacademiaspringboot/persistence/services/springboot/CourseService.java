@@ -2,6 +2,7 @@ package net.bitsrl.progacademiaspringboot.persistence.services.springboot;
 
 import net.bitsrl.progacademiaspringboot.model.Course;
 import net.bitsrl.progacademiaspringboot.model.CourseEdition;
+import net.bitsrl.progacademiaspringboot.model.Student;
 import net.bitsrl.progacademiaspringboot.persistence.repositories.abstractions.CourseAbRepository;
 import net.bitsrl.progacademiaspringboot.persistence.repositories.abstractions.CourseEditionAbRepository;
 import net.bitsrl.progacademiaspringboot.persistence.services.abstractions.AbCourseService;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Service
 public class CourseService implements AbCourseService {
+
     @Autowired
     private CourseAbRepository courseRepo;
     @Autowired
@@ -26,12 +28,12 @@ public class CourseService implements AbCourseService {
 
     @Override
     public List<Course> findCourseByTitle(String pattern) {
-        return null;
+        return courseRepo.findByTitleContains(pattern);
     }
 
     @Override
-    public void saveCourse(Course toInsert) {
-        courseRepo.save(toInsert);
+    public Course saveCourse(Course toInsert) {
+        return courseRepo.save(toInsert);
     }
 
     @Override
@@ -46,14 +48,14 @@ public class CourseService implements AbCourseService {
         return courseEditionRepo.findAll();
     }
 
-//    @Override
-//    public CourseEdition findCourseEditionById(int id) {
-//        return courseEditionRepo.findById(id);
-//    }
+    @Override
+    public CourseEdition findCourseEditionById(Integer id) {
+        return courseEditionRepo.getOne(id);
+    }
 
     @Override
-    public void saveCourseEdition(CourseEdition toInsert) {
-        courseEditionRepo.save(toInsert);
+    public CourseEdition saveCourseEdition(CourseEdition toInsert) {
+        return courseEditionRepo.save(toInsert);
     }
 
     @Override

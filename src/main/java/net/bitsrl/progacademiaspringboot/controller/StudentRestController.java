@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RestController
 @CrossOrigin
+@RestController
 @RequestMapping("/api")
 public class StudentRestController {
     private StudentService studentService;
@@ -65,13 +65,15 @@ public class StudentRestController {
         studentService.studentDelete(id);
     }
 
-    @GetMapping("/enrollments")
-    public List<EnrollmentDto> getAllEnrollments(){
-        List<Enrollment> enrollments = studentService.getAllEnrollment();
-        List<EnrollmentDto> enrollmentsDto = enrollments.stream().
-                map(EnrollmentDto::new).collect(Collectors.toList());
-        return enrollmentsDto;
-    }
+//----------------------------------------------------------------------------------------------------------------------
+    //ENROLLMENT
+@GetMapping("/enrollments")
+public List<EnrollmentDto> getAllEnrollments(){
+    List<Enrollment> enrollments = studentService.getAllEnrollment();
+    List<EnrollmentDto> enrollmentsDto = enrollments.stream().
+            map(EnrollmentDto::new).collect(Collectors.toList());
+    return enrollmentsDto;
+}
 
     @PostMapping("/enrollments")
     public EnrollmentDto createEnrollment(@RequestBody EnrollmentDto enrollmentDto){
@@ -96,7 +98,7 @@ public class StudentRestController {
     public List<EnrollmentDto> getStudentAndEnrollment(@PathVariable int id) {
         List<Enrollment> enrollments = studentService.findByStudentId(id);
         for (Enrollment e: enrollments
-             ) {
+        ) {
             System.out.println(e);
         }
         List<EnrollmentDto> enrollmentsDto = enrollments.stream().

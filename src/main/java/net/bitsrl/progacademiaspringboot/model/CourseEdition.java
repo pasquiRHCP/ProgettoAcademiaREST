@@ -13,7 +13,7 @@ public class CourseEdition {
     private LocalDate start;
     private LocalDate end;
     private BigDecimal cost;
-    private byte isExternal;
+    private boolean isExternal;
     private String address;
     private String city;
     private String zip;
@@ -28,9 +28,9 @@ public class CourseEdition {
     public CourseEdition() {
     }
 
-    public CourseEdition(int id, LocalDate start, LocalDate end, BigDecimal cost, byte isExternal,
-                         String address, String city, String zip, Agent leadTeacher, Agent manager,
-                         Classroom mainClassroom, Course course) {
+    public CourseEdition( int id, LocalDate start, LocalDate end, BigDecimal cost, boolean isExternal,
+                          String address, String city, String zip, Agent leadTeacher, Agent manager,
+                          Classroom mainClassroom, Course course ) {
         this.id = id;
         this.start = start;
         this.end = end;
@@ -43,9 +43,6 @@ public class CourseEdition {
         this.manager = manager;
         this.mainClassroom = mainClassroom;
         this.course = course;
-        this.enrollments = enrollments;
-        this.lessons = lessons;
-        this.teachingAssignments = teachingAssignments;
     }
 
     @Id
@@ -91,11 +88,11 @@ public class CourseEdition {
 
     @Basic
     @Column(name = "isExternal", nullable = false)
-    public byte getIsExternal() {
+    public boolean getIsExternal() {
         return isExternal;
     }
 
-    public void setIsExternal(byte isExternal) {
+    public void setIsExternal(boolean isExternal) {
         this.isExternal = isExternal;
     }
 
