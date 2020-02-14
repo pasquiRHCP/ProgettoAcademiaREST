@@ -98,7 +98,7 @@ public class Course {
     }
 
     @Basic
-    @Column(name = "cost", nullable = true, precision = 2)
+    @Column(name = "cost", nullable = true, precision = 12)
     public BigDecimal getCost() {
         return cost;
     }

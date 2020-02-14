@@ -64,7 +64,7 @@ public class CourseRestController {
     //------------------------------------------------------------------------------------------------------------------
     //COURSE EDITION
 
-    @GetMapping("/courseeditions")
+    @GetMapping("/courseEditions")
     public List<CourseEditionDto> getAllCourseEdition() throws DataException {
 
         List<CourseEdition> courseEditions = service.findAllCourseEdition();
@@ -73,28 +73,28 @@ public class CourseRestController {
         return courseEditionsDto;
     }
 
-    @GetMapping("/courseeditions/{id}")
+    @GetMapping("/courseEditions/{id}")
     public CourseEditionDto getCourseEditionById(@PathVariable int id){
         CourseEdition courseEdition = service.findCourseEditionById(id);
         CourseEditionDto courseEditionDto = new CourseEditionDto(courseEdition);
         return courseEditionDto;
     }
 
-    @PostMapping("/courseeditions")
+    @PostMapping("/courseEditions")
     public CourseEditionDto createCourseEdition(@RequestBody CourseEditionDto dto) {
         CourseEdition courseEdition = dto.toCourseEdition();
         service.saveCourseEdition(courseEdition);
         return new CourseEditionDto(courseEdition);
     }
 
-    @PutMapping("/courseeditions")
+    @PutMapping("/courseEditions")
     public CourseEditionDto updateCourseEdition(@RequestBody CourseEditionDto dto){
         CourseEdition courseEdition = dto.toCourseEdition();
         service.saveCourseEdition(courseEdition);
         return dto;
     }
 
-    @DeleteMapping("/courseeditions/{id}")
+    @DeleteMapping("/courseEditions/{id}")
     public void deleteCourseEdition(@PathVariable Integer id){
         service.deleteCourseEditionById(id);
     }
