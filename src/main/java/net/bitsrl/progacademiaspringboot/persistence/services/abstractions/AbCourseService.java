@@ -12,6 +12,8 @@ public interface AbCourseService {
 
     List<Course> findCourseByTitle(String pattern);
 
+    Course findCourseById(Integer id);
+
     Course saveCourse(Course toInsert);
 
     void deleteCourseById(int id);

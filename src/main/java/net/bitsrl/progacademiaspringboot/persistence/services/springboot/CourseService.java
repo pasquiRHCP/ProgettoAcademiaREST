@@ -32,6 +32,11 @@ public class CourseService implements AbCourseService {
     }
 
     @Override
+    public Course findCourseById(Integer id) {
+        return courseRepo.getOne(id);
+    }
+
+    @Override
     public Course saveCourse(Course toInsert) {
         return courseRepo.save(toInsert);
     }

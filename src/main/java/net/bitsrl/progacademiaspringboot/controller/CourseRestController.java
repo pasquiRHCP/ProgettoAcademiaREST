@@ -33,13 +33,20 @@ public class CourseRestController {
         return coursesDto;
     }
 
-    @GetMapping("/courses/{title}")
+    @GetMapping("/courses/title/{title}")
     public List<CourseDto> getCourseByTitle(@PathVariable String title){
         List<Course> courses = service.findCourseByTitle( title );
 
         List<CourseDto> coursesByTitleDto = courses.stream()
                 .map(CourseDto::new).collect(Collectors.toList());
         return coursesByTitleDto;
+    }
+
+    @GetMapping("/courses/id/{id}")
+    public CourseDto getCourseById(@PathVariable Integer id){
+        Course course = service.findCourseById(id);
+        CourseDto coursesDto = new CourseDto(course);
+        return coursesDto;
     }
 
     @PostMapping("/courses")

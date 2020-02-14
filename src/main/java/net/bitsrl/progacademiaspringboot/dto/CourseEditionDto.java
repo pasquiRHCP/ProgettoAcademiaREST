@@ -57,7 +57,7 @@ public class CourseEditionDto {
         this.address = courseEdition.getAddress();
         this.city = courseEdition.getCity();
         this.zip = courseEdition.getZip();
-        this.leadTeacherName = courseEdition.getLeadTeacher() == null ? null : courseEdition.getLeadTeacher().getFirstname() + courseEdition.getLeadTeacher().getLastname();
+        this.leadTeacherName = courseEdition.getLeadTeacher() == null ? null : courseEdition.getLeadTeacher().getFirstname() +" "+ courseEdition.getLeadTeacher().getLastname();
         this.managerName = courseEdition.getManager() == null ? null : courseEdition.getManager().getFirstname() + courseEdition.getManager().getLastname();
         this.courseTitle = courseEdition.getCourse() == null ? null : courseEdition.getCourse().getTitle();
         this.leadTeacherId = courseEdition.getLeadTeacher() == null ? 0 : courseEdition.getLeadTeacher().getId();
