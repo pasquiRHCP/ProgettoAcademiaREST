@@ -15,11 +15,16 @@ import java.util.List;
 @Transactional
 public class StudentServiceImpl implements StudentService {
 
-    @Autowired
+//    @Autowired
     private StudentAbRepository studentRepo;
-    @Autowired
+//    @Autowired
     private EnrollmentAbRepository enrollmentRepo;
 
+    @Autowired
+    public StudentServiceImpl(StudentAbRepository studentRepo, EnrollmentAbRepository enrollmentRepo) {
+        this.enrollmentRepo = enrollmentRepo;
+        this.studentRepo = studentRepo;
+    }
 
     @Override
     public Student studentCreateOrUpdate(Student student) {
